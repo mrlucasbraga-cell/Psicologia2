@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/png" sizes="200x200" href="psicologia-icone.png">
+
+    <title>Ana Clara Psicóloga | Psicoterapia de Alto Padrão e Saúde Mental</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- ScrollReveal para animações de rolagem -->
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <style>
+        :root {
+            --bg-main: #F9F6F0; /* Branco Linho / Areia Claríssimo */
+            --bg-secondary: #F3ECE2; /* Areia Natural Confortável */
+            --card-light: #FFFFFF; /* Branco Puro para blocos de destaque */
+            --sand-dark: #4A443C; /* Fendi / Areia Escuro Textual */
+            --sand-muted: #8C8275; /* Cinza Areia para descrições */
+            --champagne: #C5A880; /* Dourado Champagne Escovado para detalhes */
+            --champagne-hover: #B3966E; /* Champagne mais intenso para interações */
+            --text-dark: #2C2722; /* Marrom Café Profundo para máxima legibilidade */
+            --border: rgba(140, 130, 117, 0.25); /* Bordas suaves em tom fendi */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background: linear-gradient(180deg, rgba(249, 246, 240, 0.85) 0%, rgba(243, 236, 226, 0.98) 100%), url('background.png');
+            background-attachment: fixed;
+            overflow-x: hidden;
+            position: relative;
+            
+            /* CSS ANTI-COPIA (Bloqueia seleção de texto) */
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Impede o clique e arraste de imagens */
+        img {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            pointer-events: none;
+        }
+
+        .container {
+            width: min(1140px, 90%);
+            margin: auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        section {
+            padding: 100px 0;
+            position: relative;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 500;
+        }
+
+        /* --- HERO SECTION COM RECORTE E IMAGEM (background2 adaptado para tons claros) --- */
+        .hero-outer {
+            position: relative;
+            background: linear-gradient(180deg, rgba(249, 246, 240, 0.7) 0%, rgba(243, 236, 226, 0.95) 100%), url('background2.png');
+            background-size: cover;
+            background-position: center;
+            padding-bottom: 100px;
+            clip-path: ellipse(140% 100% at 50% 0%);
+        }
+
+        /* Iluminação de fundo no topo */
+        .hero-outer::after {
+            content: "";
+            position: absolute;
+            top: 30%;
+            left: 30%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+            background: radial-gradient(circle, rgba(197, 168, 128, 0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 50px;
+            align-items: center;
+            padding-top: 40px;
+        }
+
+        .hero-image-box {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image-box img {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            object-fit: contain;
+            animation: floatStatue 6s ease-in-out infinite;
+            filter: drop-shadow(0 15px 25px rgba(140, 130, 117, 0.3));
+        }
+
+        .hero-text-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .main-logo-wrapper {
+            margin-bottom: 15px;
+        }
+
+        .main-logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4.5rem;
+            color: var(--sand-dark);
+            line-height: 1;
+            letter-spacing: -2px;
+            font-weight: 300;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 5px;
+        }
+
+        .hero-title {
+            font-size: 3.8rem;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--champagne);
+            margin-bottom: 35px;
+            font-weight: 600;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: var(--sand-dark);
+            line-height: 1.7;
+            margin-bottom: 35px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-align: left;
+        }
+
+        .hero-description i {
+            color: var(--champagne);
+            font-size: 1.1rem;
+        }
+
+        /* --- BOTÕES --- */
+        .btn-gold {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--champagne) 0%, #A88D65 100%);
+            color: #FFFFFF;
+            padding: 14px 36px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(197, 168, 128, 0.3);
+        }
+
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(197, 168, 128, 0.5);
+            background: linear-gradient(135deg, #A88D65 0%, var(--champagne) 100%);
+        }
+
+        /* --- ÁREAS DE ATUAÇÃO --- */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-header i {
+            color: var(--champagne);
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        .section-title {
+            font-size: 2.4rem;
+            color: var(--sand-dark);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .act-card {
+            background-color: var(--card-light);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(140, 130, 117, 0.05);
+        }
+
+        .act-card:hover {
+            border-color: var(--champagne);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 28px rgba(140, 130, 117, 0.12);
+        }
+
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+            border: 1px solid var(--champagne);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            background-color: var(--bg-main);
+        }
+
+        .icon-circle i {
+            color: var(--champagne);
+            font-size: 1.8rem;
+        }
+
+        .act-card h3 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .act-card p {
+            color: var(--sand-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .center-action {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        /* --- SEÇÃO SOBRE (ABOUT) --- */
+        .about-section {
+            background: radial-gradient(circle at right, var(--bg-secondary) 0%, transparent 60%);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.8rem;
+            color: var(--sand-dark);
+            margin-bottom: 25px;
+        }
+
+        .about-text p {
+            color: var(--text-dark);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .about-img-box {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(140, 130, 117, 0.2);
+            border: 4px solid var(--card-light);
+        }
+
+        .about-img-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- DEPOIMENTOS --- */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 55px 25px; 
+            margin-top: 40px;
+        }
+
+        .testi-card {
+            background-color: var(--card-light);
+            color: var(--text-dark);
+            border-radius: 12px;
+            padding: 50px 30px 30px 30px;
+            position: relative;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(140, 130, 117, 0.08);
+            border: 1px solid var(--border);
+        }
+
+        .avatar-circle {
+            width: 75px;
+            height: 75px;
+            border-radius: 50%;
+            background-color: var(--bg-secondary);
+            position: absolute;
+            top: -37px;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid var(--bg-main);
+            overflow: hidden;
+        }
+
+        .avatar-circle img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testi-card .quote-icon {
+            color: var(--champagne);
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .testi-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--sand-dark);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .testi-author {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            display: block;
+        }
+
+        /* --- FAQ & CONTATO --- */
+        .faq-contact-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 40px;
+        }
+
+        .faq-wrapper .faq-item {
+            background-color: var(--card-light);
+            border: 1px solid var(--border);
+            margin-bottom: 12px;
+            border-radius: 8px;
+        }
+
+        .faq-trigger {
+            width: 100%;
+            padding: 20px;
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            text-align: left;
+            font-size: 1.05rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+        }
+
+        .faq-trigger span {
+            color: var(--champagne);
+            font-size: 1.3rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            padding: 0 20px;
+            color: var(--sand-dark);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .faq-item.active .faq-content {
+            max-height: 200px;
+            padding-bottom: 20px;
+        }
+
+        .faq-item.active .faq-trigger span {
+            transform: rotate(45deg);
+        }
+
+        .side-contact-box {
+            background-color: transparent;
+            border-left: 1px solid var(--border);
+            padding-left: 40px;
+        }
+
+        .side-contact-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .side-contact-box p {
+            color: var(--sand-dark);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 16px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #FFFFFF;
+            font-weight: 500;
+            margin-bottom: 15px;
+            transition: opacity 0.2s ease;
+        }
+
+        .contact-link:hover {
+            opacity: 0.9;
+        }
+
+        .contact-link.wp { background-color: #2E5A44; } /* Verde Oliva Sofisticado */
+        .contact-link.ml { background-color: var(--sand-dark); border: 1px solid var(--border); }
+
+        /* --- FOOTER --- */
+        footer {
+            padding: 60px 0;
+        }
+
+        .footer-card {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--border) 100%);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            color: var(--text-dark);
+            display: grid;
+            grid-template-columns: 1.2fr 1fr 0.8fr;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .footer-info-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .footer-info-left i {
+            font-size: 2.2rem;
+            color: var(--sand-dark);
+        }
+
+        .footer-info-left p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            line-height: 1.4;
+            color: var(--text-dark);
+        }
+
+        .footer-channels {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--sand-dark);
+        }
+
+        .footer-channels i {
+            margin-right: 8px;
+            color: var(--champagne);
+        }
+
+        .footer-channels a {
+            color: var(--sand-dark);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .btn-dark-footer {
+            background-color: var(--sand-dark);
+            color: #FFFFFF;
+            text-align: center;
+            padding: 14px 28px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background-color 0.2s ease;
+            display: inline-block;
+            justify-self: end;
+        }
+
+        .btn-dark-footer:hover {
+            background-color: var(--text-dark);
+        }
+
+        /* --- ANIMAÇÕES --- */
+        @keyframes floatStatue {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* --- RESPONSIVIDADE --- */
+        @media (max-width: 992px) {
+            .hero-grid, .grid-3, .testimonials-grid, .faq-contact-grid, .footer-card, .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero-image-box {
+                max-width: 350px;
+                margin: 0 auto;
+            }
+            .hero-text-box {
+                align-items: center;
+                text-align: center;
+            }
+            .side-contact-box {
+                border-left: none;
+                padding-left: 0;
+                margin-top: 40px;
+            }
+            .btn-dark-footer {
+                justify-self: start;
+            }
+            .about-img-box {
+                order: -1;
+                max-width: 450px;
+                margin: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HERO SECTION -->
+    <div class="hero-outer">
+        <section class="container hero-grid">
+            <div class="hero-image-box">
+                <img src="psicologia-icone.png" alt="Psicoterapia Contemporânea de Alto Padrão">
+            </div>
+
+            <div class="hero-text-box">
+                <div class="main-logo-wrapper">
+                    <div class="main-logo">AC</div>
+                </div>
+                
+                <h1 class="hero-title">Ana Clara</h1>
+                <div class="hero-subtitle">Psicologia Clínica e Psicoterapia de Alto Padrão</div>
+                
+                <div class="hero-description">
+                    <i class="fa-solid fa-brain"></i>
+                    <span>Sigilo absoluto, acolhimento especializado e o suporte necessário para sua evolução pessoal.</span>
+                </div>
+                
+                <a href="#contato" class="btn-gold">
+                    <i class="fa-solid fa-calendar-check"></i> Agendar Consulta Privada
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <!-- ÁREAS DE ATUAÇÃO -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Direcionamentos Terapêuticos</h2>
+                <i class="fa-solid fa-hand-holding-heart"></i>
+            </div>
+
+            <div class="grid-3">
+                <div class="act-card">
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+                    <h3>Psicoterapia Individual</h3>
+                    <p>Espaço seguro focado no tratamento de ansiedade, depressão, estresse crônico e regulação emocional para adultos que buscam alta performance mental.</p>
+                </div>
+
+                <div class="act-card">
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <h3>Conflitos e Relacionamentos</h3>
+                    <p>Desenvolvimento de inteligência relacional, superação de dependência emocional, dinâmicas de casal e reestruturação de laços familiares.</p>
+                </div>
+
+                <div class="act-card">
+                    <div class="icon-circle">
+                        <i class="fa-solid fa-arrow-up-right-dots"></i>
+                    </div>
+                    <h3>Desenvolvimento Pessoal</h3>
+                    <p>Orientação estratégica para fortalecimento da autoestima, autoconhecimento profundo, transição de carreira e tomadas de decisão complexas.</p>
+                </div>
+            </div>
+
+            <div class="center-action">
+                <a href="#contato" class="btn-gold">
+                    <i class="fa-solid fa-comment-medical"></i> Solicitar Atendimento Confidencial
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE A PSICÓLOGA -->
+    <section class="about-section">
+        <div class="container about-grid">
+            <div class="about-text">
+                <h2>Dra. Ana Clara</h2>
+                <p>Com sólida bagagem e anos de atuação em psicologia clínica, a Dra. Ana Clara é referência em psicoterapia com abordagem personalizada, unindo rigor ético às técnicas cientificamente validadas na saúde mental.</p>
+                <p>O consultório oferece estrutura de acolhimento premium, privacidade restrita e atendimento voltado à superação de bloqueios emocionais, permitindo que cada paciente reencontre seu equilíbrio essencial de forma discreta e humanizada.</p>
+                <p>O foco primordial é o resguardo da sua individualidade. O processo terapêutico é conduzido de maneira minuciosa, onde cada particularidade da sua história importa para transformar sofrimento em autonomia e lucidez.</p>
+            </div>
+            <div class="about-img-box">
+                <img src="foto-da-psicologa.png" alt="Dra. Ana Clara Psicóloga">
+            </div>
+        </div>
+    </section>
+
+    <!-- DEPOIMENTOS -->
+    <section>
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Transformações e Feedbacks</h2>
+                <i class="fa-solid fa-star"></i>
+            </div>
+
+            <div class="testimonials-grid">
+                <!-- Card 1 -->
+                <div class="testi-card">
+                    <div class="avatar-circle">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=60" alt="Paciente Preservado">
+                    </div>
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>"Uma profissional brilhante. Iniciei a terapia em um momento de esgotamento profissional extremo (Burnout) e o direcionamento da Ana Clara foi crucial para eu retomar as rédeas da minha vida."</p>
+                    <span class="testi-author">— M.S.A., Diretora Executiva</span>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="testi-card">
+                    <div class="avatar-circle">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=60" alt="Paciente Preservado">
+                    </div>
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>"A terapia com a Dra. Ana Clara me trouxe uma clareza que eu não conseguia encontrar sozinho. A sensibilidade, aliada a um posicionamento muito técnico e firme, transformou meu casamento."</p>
+                    <span class="testi-author">— Lucas F., Comerciante</span>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="testi-card">
+                    <div class="avatar-circle">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&auto=format&fit=crop&q=60" alt="Paciente Preservado">
+                    </div>
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>"Precisava conciliar a pressão societária da empresa com crises agudas de pânico. Encontrei no atendimento da Ana um refúgio seguro e científico para conseguir performar e ter paz."</p>
+                    <span class="testi-author">— Dra. Amanda R., Advogada Corporativa</span>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="testi-card">
+                    <div class="avatar-circle">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&auto=format&fit=crop&q=60" alt="Paciente Preservado">
+                    </div>
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>"Profissionalismo impecável. O cuidado constante com o sigilo ético e o respeito ao meu tempo me chamaram atenção desde a primeira sessão. Recomendo de olhos fechados."</p>
+                    <span class="testi-author">— Carlos H., Empresário</span>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="testi-card">
+                    <div class="avatar-circle">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=100&auto=format&fit=crop&q=60" alt="Paciente Preservado">
+                    </div>
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>"As sessões de mentoria emocional e psicoterapia me ajudaram a identificar padrões autossabotadores crônicos que prejudicavam todos os meus investimentos e escolhas cotidianas."</p>
+                    <span class="testi-author">— R. Albuquerque, Investidor</span>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="testi-card">
+                    <div class="avatar-circle">
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&auto=format&fit=crop&q=60" alt="Paciente Preservado">
+                    </div>
+                    <i class="fa-solid fa-quote-left quote-icon"></i>
+                    <p>"Atendimento impecável. Ela conduz o processo de forma muito transparente, explicando os caminhos do tratamento sem falsas promessas, gerando resultados reais e duradouros."</p>
+                    <span class="testi-author">— J. Henrique, Produtor Agrícola</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PERGUNTAS FREQUENTES & CONTATO -->
+    <section id="contato">
+        <div class="container faq-contact-grid">
+            
+            <div class="faq-wrapper">
+                <h2 style="font-size: 2.2rem; color: var(--sand-dark); margin-bottom: 25px;">Dúvidas Frequentes</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-trigger">As sessões de psicoterapia são totalmente confidenciais? <span>+</span></button>
+                    <div class="faq-content">
+                        <p>Sim. O sigilo profissional é absoluto e estritamente amparado pelo Código de Ética Profissional do Psicólogo (Resolução CFP), garantindo proteção total à sua identidade, histórico e relatos.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger">Como funciona a primeira sessão de avaliação? <span>+</span></button>
+                    <div class="faq-content">
+                        <p>A primeira sessão serve para compreender a sua queixa principal, analisar a sua demanda emocional e alinhar como a metodologia psicoterápica pode ser traçada de forma personalizada para o seu caso.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger">Vocês fazem emissão de recibos para reembolso de convênio? <span>+</span></button>
+                    <div class="faq-content">
+                        <p>Sim. Emitimos nota fiscal e documentação técnica completa contendo o registro do CRP para que você possa solicitar o reembolso integral ou parcial junto ao seu plano de saúde privado.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-trigger">Qual a duração e a frequência ideal das consultas? <span>+</span></button>
+                    <div class="faq-content">
+                        <p>Cada sessão de psicoterapia individual tem duração padrão de 50 minutos. A frequência recomendada para a consistência do tratamento costuma ser semanal, podendo ser reavaliada em casos específicos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="side-contact-box">
+                <h3>Precisa de suporte especializado?</h3>
+                <p>Entre em contato através do nosso canal seguro de agendamentos e recepção VIP.</p>
+                
+                <a href="#" class="contact-link wp">
+                    <i class="fa-brands fa-whatsapp"></i> Agendar via WhatsApp
+                </a>
+                <a href="#" class="contact-link ml">
+                    <i class="fa-regular fa-envelope"></i> Contato via E-mail
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-card">
+                <div class="footer-info-left">
+                    <i class="fa-solid fa-headset"></i>
+                    <p>Agende sua consulta e invista na sua saúde mental com atendimento estratégico.<br><span style="font-size: 0.85rem; font-weight: normal; opacity: 0.8;">Atendimento estritamente confidencial com hora marcada.</span></p>
+                </div>
+                
+                <div class="footer-channels">
+                    <div><i class="fa-solid fa-phone"></i> (31) 98765-4321</div>
+                    <div><i class="fa-solid fa-envelope"></i> <a href="mailto:contato@anaclarapsicologa.com.br">contato@anaclarapsicologa.com.br</a></div>
+                    <div><i class="fa-solid fa-globe"></i> <a href="http://www.anaclarapsicologa.com.br" target="_blank">www.anaclarapsicologa.com.br</a></div>
+                </div>
+                
+                <a href="#contato" class="btn-dark-footer">
+                    <i class="fa-solid fa-lock"></i> Canal Seguro
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Lógica simples do FAQ Accordion
+        document.querySelectorAll('.faq-trigger').forEach(trigger => {
+            trigger.addEventListener('click', () => {
+                const item = trigger.parentElement;
+                const isActive = item.classList.contains('active');
+                
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
+                
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Configuração das animações do ScrollReveal
+        const sr = ScrollReveal({
+            origin: 'bottom',
+            distance: '40px',
+            duration: 1000,
+            delay: 200,
+            reset: false 
+        });
+
+        // Animações da seção topo (Hero)
+        sr.reveal('.hero-image-box', { origin: 'left', distance: '60px' });
+        sr.reveal('.main-logo-wrapper', { delay: 100 });
+        sr.reveal('.hero-title', { delay: 300 });
+        sr.reveal('.hero-subtitle', { delay: 450 });
+        sr.reveal('.hero-description', { delay: 600 });
+        sr.reveal('.hero-text-box .btn-gold', { delay: 750 });
+
+        // Títulos de todas as seções
+        sr.reveal('.section-header', { distance: '20px' });
+
+        // Cards de Áreas de Atuação
+        sr.reveal('.act-card', { interval: 200 });
+        sr.reveal('.center-action', { delay: 400 });
+
+        // Seção Sobre a Psicóloga
+        sr.reveal('.about-text p', { interval: 150 });
+        sr.reveal('.about-img-box', { origin: 'right', distance: '50px', delay: 300 });
+
+        // Cards de Depoimentos
+        sr.reveal('.testi-card', { interval: 150, distance: '50px' });
+
+        // FAQ e Bloco de Contato Lateral
+        sr.reveal('.faq-item', { interval: 150 });
+        sr.reveal('.side-contact-box', { origin: 'right', distance: '40px', delay: 200 });
+
+        // Rodapé
+        sr.reveal('.footer-card', { distance: '30px' });
+
+
+        /* ==========================================================================
+           TRAVAS ADICIONAIS DE SEGURANÇA AVANÇADAS (ANTI-CÓPIA, ANTI-F12, ANTI-MAC)
+           ========================================================================== */
+
+        // 1. Bloqueia o Clique com o Botão Direito do Mouse
+        document.addEventListener('contextmenu', event => event.preventDefault());
+
+        // 2. Trava Suprema de Teclado (Windows e Mac)
+        document.addEventListener('keydown', function(event) {
+            // Bloqueia F12
+            if (event.key === "F12") {
+                event.preventDefault();
+                return false;
+            }
+
+            // Detecta teclas de modificação (Ctrl no Windows, Cmd no Mac)
+            const isModifier = event.ctrlKey || event.metaKey;
+            const key = event.key.toLowerCase();
+
+            // Bloqueia C (Copiar), U (Ver Código Fonte), S (Salvar), P (Imprimir), A (Selecionar Tudo)
+            if (isModifier && (key === 'c' || key === 'u' || key === 's' || key === 'p' || key === 'a')) {
+                event.preventDefault();
+                return false;
+            }
+
+            // Bloqueia Inspecionar Elemento no Windows (Ctrl+Shift+I ou J) e Mac (Cmd+Opt+I ou J)
+            if (isModifier && (event.shiftKey || event.altKey) && (key === 'i' || key === 'j' || key === 'c')) {
+                event.preventDefault();
+                return false;
+            }
+        });
+
+        // 3. Sistema Ativo Anti-Cópia / Limpeza de Clipboard Contínua
+        document.addEventListener('copy', function(event) {
+            event.preventDefault();
+            if (event.clipboardData) {
+                event.clipboardData.setData('text/plain', 'Conteúdo Protegido por Sigilo Profissional.');
+            }
+        });
+    </script>
+</body>
+
+</html>
